@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as io from "socket.io-client";
+import {io} from 'socket.io-client'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class WebSocketService {
 
   listen(eventName: String) {
     return new Observable((Subscriber) => {
-      this.socket.on(eventName, (data) => {
+      this.socket.on(eventName, (data:unknown) => {
         Subscriber.next(data);
       });
     });
