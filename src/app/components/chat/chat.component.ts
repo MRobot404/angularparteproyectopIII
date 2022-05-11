@@ -17,11 +17,21 @@ export class ChatComponent implements OnInit {
   eventName = 'send-message';
 
   constructor(
-   private activated: ActivatedRoute,
+    private activated: ActivatedRoute,
     private webService: WebSocketService
   ) {}
 
   ngOnInit(): void {
-    
+    const id = this.activated.snapshot.params['id'];
+    this.userChat.user = id;
+
+    this.webService.listen('text-event').subscribe((data) => {
+      this.myMessages = data;
+    });
+  }
+
+  myMessage() {
+    this.webService.emit(this.eventName, this.userChat);
+    this.userChat.text = '';
   }
 }
