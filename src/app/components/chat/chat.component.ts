@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ChatComponent implements OnInit {
     user: '',
     text: '',
   };
+  colors = document.querySelectorAll('color-box label');
 
   myMessages: any;
   eventName = 'send-message';
@@ -19,7 +21,7 @@ export class ChatComponent implements OnInit {
   constructor(
     private activated: ActivatedRoute,
     private webService: WebSocketService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.activated.snapshot.params['id'];
@@ -28,10 +30,15 @@ export class ChatComponent implements OnInit {
     this.webService.listen('text-event').subscribe((data) => {
       this.myMessages = data;
     });
+ 
   }
 
-  myMessage() {
+  myMessage(): void {
     this.webService.emit(this.eventName, this.userChat);
     this.userChat.text = '';
   }
+
+ 
+
+
 }
