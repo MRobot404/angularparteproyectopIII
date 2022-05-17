@@ -1,15 +1,18 @@
 <div id="div-1">
     <div>
         <label for=""> Tu Nick Name es: <span style="font-weight: bold;">{{userChat.user}}</span></label>
-
-        <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userChat.text"
+      <label>Mensajes Enviados ={{messagecont}} </label>
+            <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userChat.text"
             placeholder="Escribe un mensaje aquí">
 
+
     </div>
+
     <div class="mt-3">
         <div *ngFor="let a of myMessages">
-            <label class="" style="font-weight:bold ;" for="">{{a.user}}: </label>
+            <label class="" style="font-weight:bold ;" for= "">{{a.user}}: </label>
             <span>{{a.text}}</span>
         </div>
-    </div>
+          </div>
 </div>
+

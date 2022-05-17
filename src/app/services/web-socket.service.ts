@@ -9,6 +9,7 @@ export class WebSocketService {
   socket: any;
   server = 'http://localhost:3000';
 
+
   constructor() {
     this.socket = io(this.server)
   }
@@ -23,4 +24,5 @@ export class WebSocketService {
   emit(eventName: String, data: any) {
     this.socket.emit(eventName,data);
   }
+
 }
