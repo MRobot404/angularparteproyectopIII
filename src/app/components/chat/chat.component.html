@@ -1,18 +1,31 @@
 <div id="div-1">
-    <div>
-        <label for=""> Tu Nick Name es: <span style="font-weight: bold;">{{userChat.user}}</span></label>
-      <label>Mensajes Enviados ={{messagecont}} </label>
-            <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userChat.text"
-            placeholder="Escribe un mensaje aquí">
-
-
+  <div>
+    <label for="">
+      Tu Nick Name es:
+      <span style="font-weight: bold">{{ userChat.user }}</span></label
+    >
+    <label>Mensajes Enviados ={{ messagecont }} </label>
+    <div class="mt-3" id="mensajes">
+      <div *ngFor="let message of myMessages">
+        <label class="" style="font-weight: bold" for="">{{ message.user }}: </label>
+        <span>{{ message.text }}</span>
+      </div>
     </div>
+ <form (ngSubmit)="myMessage()" id="formulario">
+  <input
+  type="text"
+  id="entrada"
+  class="form-control rounded-3"
+  [(ngModel)]="userChat.text"
+  [ngModelOptions]="{ standalone: true }"
+  placeholder="Escribe un mensaje aquí"
+/>
+<input type="submit" id="boton" class="btn btn-success rounded-5" value="Guardar">
+ </form>
+ 
+    
 
-    <div class="mt-3">
-        <div *ngFor="let a of myMessages">
-            <label class="" style="font-weight:bold ;" for= "">{{a.user}}: </label>
-            <span>{{a.text}}</span>
-        </div>
-          </div>
+  </div>
+
+ 
 </div>
-

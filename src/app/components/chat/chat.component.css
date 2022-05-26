@@ -11,8 +11,7 @@ label {
 
 
 
-
-input {
+#entrada {
     width: 40%;
     margin: auto;
     position: fixed;
@@ -25,6 +24,20 @@ input {
     backdrop-filter: blur(10px);
     margin-block: 2rem;
 
+}
+#boton {
+    width: 10%;
+    border-style: dotted;
+    margin: auto;
+    position: fixed;
+    bottom: 0;
+    left: 55%;
+    right: 0;
+    display: flex;
+    height: 3rem;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    margin-block: 2rem;
 }
 
 .input-data .underline:before {
