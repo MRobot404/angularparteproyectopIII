@@ -25,4 +25,9 @@ export class WebSocketService {
     this.socket.emit(eventName,data);
   }
 
+  disconnect():void{
+    console.log("si jala")
+  }
+  
+
 }

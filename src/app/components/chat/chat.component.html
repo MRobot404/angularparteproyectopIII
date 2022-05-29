@@ -1,31 +1,45 @@
-<div id="div-1">
-  <div>
-    <label for="">
-      Tu Nick Name es:
-      <span style="font-weight: bold">{{ userChat.user }}</span></label
-    >
-    <label>Mensajes Enviados ={{ messagecont }} </label>
-    <div class="mt-3" id="mensajes">
-      <div *ngFor="let message of myMessages">
-        <label class="" style="font-weight: bold" for="">{{ message.user }}: </label>
-        <span>{{ message.text }}</span>
-      </div>
+<div class="card border border-success p-2 mb-2" style="width: 18rem" id="usuarios">
+  <div class="card-body ">
+    <h5 class="card-title">Usuarios conectados:</h5>
+    <div *ngFor="let a of myUsers">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="font-weight: bold">{{ a.nombre }}</li>
+      </ul>
     </div>
- <form (ngSubmit)="myMessage()" id="formulario">
-  <input
-  type="text"
-  id="entrada"
-  class="form-control rounded-3"
-  [(ngModel)]="userChat.text"
-  [ngModelOptions]="{ standalone: true }"
-  placeholder="Escribe un mensaje aquí"
-/>
-<input type="submit" id="boton" class="btn btn-success rounded-5" value="Guardar">
- </form>
- 
-    
-
   </div>
-
- 
 </div>
+
+<div id="contenedor">
+  <br />
+
+  <label for="">
+    Tu Nick Name es:
+    <span style="font-weight: bold">{{ userChat.user }}</span></label
+  >
+  <label>Mensajes Enviados ={{ messagecont }} </label>
+  <div class="mt-3" id="mensajes">
+    <div *ngFor="let message of myMessages">
+      <label class="" style="font-weight: bold" for=""
+        >{{ message.user }}:
+      </label>
+      <span>{{ message.text }}</span>
+    </div>
+  </div>
+  <form (ngSubmit)="myMessage()" id="formulario">
+    <input
+      type="text"
+      id="entrada"
+      class="form-control rounded-3"
+      [(ngModel)]="userChat.text"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Escribe un mensaje aquí"
+    />
+    <input
+      type="submit"
+      id="boton"
+      class="btn btn-success "
+      value="Guardar"
+    />
+  </form>
+</div>
+
