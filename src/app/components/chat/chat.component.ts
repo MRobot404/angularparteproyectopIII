@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HostListener } from '@angular/core';
 
 import { WebSocketService } from '../../services/web-socket.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Socket } from 'socket.io-client';
 import { Observable, retry } from 'rxjs';
-
 
 @Component({
   selector: 'app-chat',
@@ -20,14 +20,16 @@ export class ChatComponent implements OnInit {
   };
   userData = {
     id: '',
-    nombre:'',
   };
   myUsers: any;
+  myUsersleft:any;
   myMessages: any;
   messagecont = 0;
   usercont = 0;
   eventName = 'send-message';
-
+  @HostListener('window:beforeunload')
+  onUnload() {
+  }
   constructor(
     private activated: ActivatedRoute,
     private webService: WebSocketService
@@ -37,11 +39,11 @@ export class ChatComponent implements OnInit {
     const id = this.activated.snapshot.params['id'];
     const contador = this.messagecont.toString();
     this.userChat.user = id;
-    this.userData.nombre = id
-    console.log(this.webService.socket.id)
+    this.userData.id = id;
+    console.log(this.webService.socket.id);
     this.userChat.mensaje = contador;
     this.webService.emit('conectado', this.userData);
-    this.webService.listen('usuarios').subscribe((data) => {
+    this.webService.listen('usuariosc').subscribe((data) => {
       this.myUsers = data;
       console.log(this.myUsers);
     });
@@ -49,7 +51,10 @@ export class ChatComponent implements OnInit {
       this.myMessages = data;
       console.log(this.myMessages);
     });
-    
+    this.webService.listen('usuariosd').subscribe((data) => {
+      this.myUsersleft = data;
+      console.log(this.myUsersleft);
+    });
   }
 
   myMessage(): void {
@@ -59,5 +64,11 @@ export class ChatComponent implements OnInit {
     this.webService.emit(this.eventName, this.userChat);
     this.userChat.text = '';
   }
- 
+  salir(): void {
+    const id = this.activated.snapshot.params['id'];
+    console.log("Si jala")
+    this.userData.id = id;
+    this.webService.emit("desconectado",this.userData);
+    location.href="";
+  }
 }
