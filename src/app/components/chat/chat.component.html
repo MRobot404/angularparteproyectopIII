@@ -16,7 +16,7 @@
                 {{ a.id }} entraste en la sala
               </li>
             </ul>
-          </div> 
+          </div>
           <div *ngFor="let a of myUsersleft">
             <ul class="list-group list-group-flush">
               <li
@@ -26,7 +26,7 @@
                 {{ a.id }} saliste de la sala
               </li>
             </ul>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
             >{{ message.user }}:
           </label>
           <span>{{ message.text }}</span>
+          <span class="text-primary border-bottom opacity-75 fst-italic ">.Time:{{message.tiempo | date:'mediumTime'}}</span>
         </div>
       </div>
       <form (ngSubmit)="myMessage()" id="formulario">

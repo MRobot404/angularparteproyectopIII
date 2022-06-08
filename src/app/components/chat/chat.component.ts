@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
     user: '',
     text: '',
     mensaje: '',
+    tiempo:'',
   };
   userData = {
     id: '',
@@ -61,6 +62,7 @@ export class ChatComponent implements OnInit {
     this.messagecont++;
     const mensaje = this.messagecont.toString();
     this.userChat.mensaje = mensaje;
+    this.userChat.tiempo = Date.now().toString();
     this.webService.emit(this.eventName, this.userChat);
     this.userChat.text = '';
   }
