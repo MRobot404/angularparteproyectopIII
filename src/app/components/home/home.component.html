@@ -1,14 +1,14 @@
-<div class="container mx-auto">
+<div class="container mx-auto animate__animated  animate__zoomIn">
   <div class="row align-items-end">
     <div class="col">
     </div>
     <div class="col">
       <div id="div-1">
         <div class="card p-5">
-          <h4>Bienvenido!!</h4>
-          <h4>Escribe tu nickname</h4>
+          <h4 class="animate__animated animate__fadeInDown">Bienvenido!!</h4>
+          <h4  class="animate__animated animate__fadeInDown">Escribe tu nickname</h4>
           <input type="text" class="form-control" [(ngModel)]="User.name">
-          <a href="" class="btn btn-primary btn-block mt-3" [routerLink]="['/chat', User.name ]">Unirme a la conversación</a>
+          <a href="" class="btn btn-primary btn-block mt-3 animate__animated  animate__jackInTheBox" [routerLink]="['/chat', User.name ]">Unirme a la conversación</a>
         </div>
       </div>
     </div>

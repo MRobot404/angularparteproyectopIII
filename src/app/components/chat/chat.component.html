@@ -40,23 +40,26 @@
         >Mensajes enviados:
         <span style="font-weight: bold">{{ messagecont }}</span>
       </label>
+      <p>{{myTyping}}</p>
       <div class="mt-3" id="mensajes">
         <div *ngFor="let message of myMessages">
           <label class="" style="font-weight: bold" for="" id="mensaje"
             >{{ message.user }}:
           </label>
           <span>{{ message.text }}</span>
-          <span class="text-primary border-bottom opacity-75 fst-italic ">.Time:{{message.tiempo | date:'mediumTime'}}</span>
+          <span class="text-secondary border-bottom opacity-75 fst-italic "> {{message.tiempo  | date:'mediumTime'}}</span>
         </div>
       </div>
       <form (ngSubmit)="myMessage()" id="formulario">
         <input
           type="text"
+         
           id="entrada"
           class="form-control rounded-3"
           [(ngModel)]="userChat.text"
           [ngModelOptions]="{ standalone: true }"
           placeholder="Escribe un mensaje aquí"
+          (keypress)="getData(userChat.user )"
         />
         <input
           type="submit"
