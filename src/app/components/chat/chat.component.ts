@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   getData(val: string): void {
     const id = this.activated.snapshot.params['id'];
     this.contador++;
-    if(this.contador==1){
+    if (this.contador == 1) {
       this.TypingData.id = id;
       this.webService.emit('typing', this.TypingData);
     }
@@ -36,13 +36,14 @@ export class ChatComponent implements OnInit {
   TypingData = {
     id: '',
   };
- contador=0;
+  contador = 0;
   myUsers: any;
   myUsersleft: any;
   myMessages: any;
   myTyping: any;
   messagecont = 0;
   usercont = 0;
+  verificador=false;
   eventName = 'send-message';
   @HostListener('window:beforeunload')
   onUnload() {}
@@ -56,7 +57,6 @@ export class ChatComponent implements OnInit {
     const contador = this.messagecont.toString();
     this.userChat.user = id;
     this.userData.id = id;
-    console.log(this.webService.socket.id);
     this.userChat.mensaje = contador;
     this.webService.emit('conectado', this.userData);
     this.webService.listen('usuariosc').subscribe((data) => {
@@ -65,15 +65,19 @@ export class ChatComponent implements OnInit {
     });
     this.webService.listen('text-event').subscribe((data) => {
       this.myMessages = data;
-      this.myTyping=[]
+      this.myTyping = [];
+      console.log(this.verificador)
+      if(this.verificador===false){
+        this.reproducir();
+      }
+    
     });
     this.webService.listen('usuariosd').subscribe((data) => {
       this.myUsersleft = data;
       console.log(this.myUsersleft);
     });
     this.webService.listen('escribiendo').subscribe((data) => {
-      this.myTyping = data+" Esta escribiendo";
-
+      this.myTyping = data + ' Esta escribiendo';
     });
   }
 
@@ -84,8 +88,15 @@ export class ChatComponent implements OnInit {
     this.userChat.tiempo = Date.now().toString();
     this.webService.emit(this.eventName, this.userChat);
     this.userChat.text = '';
-    this.myTyping=[]
-    this.contador=0
+    this.myTyping = [];
+    this.contador = 0;
+    this.verificador=false;
+
+    
+  }
+  reproducir() {
+    const audio = new Audio('assets/notificacion.mp3');
+    audio.play();
   }
   salir(): void {
     const id = this.activated.snapshot.params['id'];

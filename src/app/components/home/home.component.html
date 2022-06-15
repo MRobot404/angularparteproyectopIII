@@ -4,11 +4,11 @@
     </div>
     <div class="col">
       <div id="div-1">
-        <div class="card p-5">
-          <h4 class="animate__animated animate__fadeInDown">Bienvenido!!</h4>
+        <div class="card p-5 border border-success">
+          <h4 class="animate__animated animate__fadeInDown">Bienvenido</h4>
           <h4  class="animate__animated animate__fadeInDown">Escribe tu nickname</h4>
-          <input type="text" class="form-control" [(ngModel)]="User.name">
-          <a href="" class="btn btn-primary btn-block mt-3 animate__animated  animate__jackInTheBox" [routerLink]="['/chat', User.name ]">Unirme a la conversación</a>
+          <input type="text" class="form-control " [(ngModel)]="User.name" >
+          <a href=""  class="btn btn-warning bi bi-door-open-fill btn-block mt-3 animate__animated  animate__jackInTheBox" [routerLink]="['/chat', User.name ]"></a>
         </div>
       </div>
     </div>

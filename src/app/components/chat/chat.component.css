@@ -4,7 +4,7 @@
 
 label#cabeza {
   margin-top: 2rem;
-  padding-right: 2%;
+  padding-right: 2rem;
 }
 label#mensaje{
   padding: 1%;
@@ -15,7 +15,7 @@ label#mensaje{
   margin: auto;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 10rem;
   right: 0;
   display: flex;
   height: 3rem;
@@ -24,19 +24,16 @@ label#mensaje{
   margin-block: 2rem;
 }
 #boton {
-  width: 10%;
+  width: 3rem;
   margin: auto;
   position: fixed;
   bottom: 0;
-  left: 55%;
+  left: 60%;
   right: 0;
   display: flex;
-  height: 3rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
   margin-block: 2rem;
-  text-align: center;
-  justify-content: center;
 }
 #cerrar {
   margin:1em auto;
@@ -54,4 +51,8 @@ label#mensaje{
   width: 100%;
   background: red;
   transform: scale(x);
+}
+i#recibido{
+  font-size: 1rem;
+   color: cornflowerblue;
 }

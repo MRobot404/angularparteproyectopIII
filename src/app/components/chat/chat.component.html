@@ -13,7 +13,10 @@
                 class="list-group-item"
                 style="color: rgb(28, 129, 23); font-weight: bold"
               >
-                {{ a.id }} entraste en la sala
+                {{ a.id }} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+                  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                </svg>
               </li>
             </ul>
           </div>
@@ -23,7 +26,9 @@
                 class="list-group-item"
                 style="color: rgb(124, 1, 1); font-weight: bold"
               >
-                {{ a.id }} saliste de la sala
+                {{ a.id }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z"/>
+                </svg>
               </li>
             </ul>
           </div>
@@ -32,45 +37,78 @@
     </div>
     <div class="col">
       <label for="" id="cabeza">
-        Tu Nickname es:
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+        </svg>
         <span style="font-weight: bold">{{ userChat.user }}</span></label
       >
 
       <label id="cabeza"
-        >Mensajes enviados:
-        <span style="font-weight: bold">{{ messagecont }}</span>
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope-plus-fill" viewBox="0 0 16 16">
+          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+          <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+        </svg>
+        <span style="font-weight: bold">     {{ messagecont }}</span>
       </label>
-      <p>{{myTyping}}</p>
+      <p>{{ myTyping }}</p>
       <div class="mt-3" id="mensajes">
         <div *ngFor="let message of myMessages">
           <label class="" style="font-weight: bold" for="" id="mensaje"
             >{{ message.user }}:
           </label>
           <span>{{ message.text }}</span>
-          <span class="text-secondary border-bottom opacity-75 fst-italic "> {{message.tiempo  | date:'mediumTime'}}</span>
+          <span
+            class="text-secondary border-bottom opacity-75 fst-italic"
+            style="font-size: 0.7rem"
+          >
+            {{ message.tiempo | date: "mediumTime"
+            }}<i id="recibido" class="bi bi-check-all"></i
+          ></span>
         </div>
       </div>
       <form (ngSubmit)="myMessage()" id="formulario">
         <input
           type="text"
-         
           id="entrada"
           class="form-control rounded-3"
           [(ngModel)]="userChat.text"
           [ngModelOptions]="{ standalone: true }"
           placeholder="Escribe un mensaje aquí"
-          (keypress)="getData(userChat.user )"
+          (keypress)="getData(userChat.user)"
         />
-        <input
+        <button
           type="submit"
           id="boton"
           class="btn btn-primary"
           value="Guardar"
-        />
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="35"
+            fill="currentColor"
+            class="bi bi-send"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+            />
+          </svg>
+        </button>
       </form>
     </div>
     <div class="col">
-        <input type="submit" (click)="salir()" id="cerrar" class="btn btn-danger" value="Salir" />
+      <button
+        type="submit"
+        (click)="salir()"
+        id="cerrar"
+        class="btn btn-danger"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
